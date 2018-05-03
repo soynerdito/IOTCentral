@@ -20,7 +20,7 @@ namespace IOTCentral.Storage
             //Remove if exists
             _Storage.RemoveWhere(x => x.Id == device.Id);
             //Adds new one
-            if(device.Id == null)
+            if(device.Id == new Guid())
             {
                 device.Id = Guid.NewGuid();
             }
