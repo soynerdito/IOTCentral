@@ -10,9 +10,7 @@ namespace IOTCentral
         {
             BuildWebHost(args).Run();
 
-
-         
-
+            
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
