@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace IOTCentral.Storage
 {
-    public class LibreEntity
+    public class OpenEntity
     {
         public string Endpoint { get; set; }
         public dynamic Payload { get; set; }
@@ -33,18 +33,18 @@ namespace IOTCentral.Storage
             return true;
         }
     }
-    public class LibreStorage
+    public class OpenStorage
     {
         /// <summary>
         /// Generic bucket to save things
         /// What things I do not know and who cares!
         /// </summary>
-        public HashSet<LibreEntity> Storage { get; private set; }
+        public HashSet<OpenEntity> Storage { get; private set; }
 
-        public LibreStorage()
+        public OpenStorage()
         {
             //Initialize storage
-            Storage = new HashSet<LibreEntity>();
+            Storage = new HashSet<OpenEntity>();
         }
 
         /// <summary>
@@ -66,15 +66,16 @@ namespace IOTCentral.Storage
             
         }
         /// <summary>
-        /// Check if object exists
+        /// Check if object exists        
         /// </summary>
         /// <param name="endpoint"></param>
         /// <param name="payload"></param>
         /// <returns></returns>
         public bool Exists(string endpoint, dynamic payload)
         {
+            // TODO: This does not works! returns always false
             //Jsonify the object then get its hash            
-            return (Storage.Where(x => x.Endpoint == endpoint && x.GetHashCode() == new LibreEntity() { Endpoint = endpoint, Payload = payload }.GetHashCode() )?.Count() >0 );
+            return (Storage.Where(x => x.Endpoint == endpoint && x.GetHashCode() == new OpenEntity() { Endpoint = endpoint, Payload = payload }.GetHashCode() )?.Count() >0 );
         }
         /// <summary>
         /// Adds an object to the list
@@ -87,7 +88,7 @@ namespace IOTCentral.Storage
             if(!Exists(endpoint, payload))
             {
                 Storage.Add(
-                    new LibreEntity()
+                    new OpenEntity()
                     {
                         Endpoint = endpoint,
                         Payload = payload

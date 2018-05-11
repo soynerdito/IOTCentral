@@ -10,12 +10,12 @@ namespace IOTCentral.Controllers
 {
    
     [Produces("application/json")]
-    [Route("api/Libre")]
-    public class LibreController : Controller
+    [Route("api/open")]
+    public class OpenController : Controller
     {
-        private readonly LibreStorage _Storage;
+        private readonly OpenStorage _Storage;
 
-        public LibreController(LibreStorage storage)
+        public OpenController(OpenStorage storage)
         {
             this._Storage = storage;
         }
