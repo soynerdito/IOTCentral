@@ -93,6 +93,7 @@ namespace IOTCentral.Storage
                         Endpoint = endpoint,
                         Payload = payload
                     });
+                return true;
             }
             return false;
         }
