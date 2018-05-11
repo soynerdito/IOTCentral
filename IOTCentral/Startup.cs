@@ -21,6 +21,7 @@ namespace IOTCentral
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IStorage<Device>>(new GenericStorage<Device>());
+            services.AddSingleton<LibreStorage>();
             services.AddMvc();
 
             services.AddSwaggerGen(c =>
