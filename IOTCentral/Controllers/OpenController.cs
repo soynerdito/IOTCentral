@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 
 namespace IOTCentral.Controllers
 {
@@ -22,18 +23,24 @@ namespace IOTCentral.Controllers
 
         [HttpGet]
         [Route("{endpoint}")]
-        public IActionResult Target([FromRoute] string endpoint)
+        public IActionResult Get([FromRoute] string endpoint)
         {
             //Get Raw Query
             var query = HttpContext.Request.Query;
-            
             var filterFunc = new Func<dynamic, bool>( new MagicFilter(query).Evaluate );
             
-
             return Ok(_Storage.Get(endpoint, filterFunc));
         }
 
-        
+        [HttpDelete]
+        [Route("{endpoint}")]
+        public IActionResult Delete([FromRoute] string endpoint)
+        {
+            //Get Raw Query
+            var query = HttpContext.Request.Query;            
+            var filterFunc = new Func<dynamic, bool>( new MagicFilter(query).Evaluate );            
+            return Ok(_Storage.Delete(endpoint, filterFunc));
+        }
 
         [HttpPost]
         [Route("{endpoint}")]
@@ -44,8 +51,10 @@ namespace IOTCentral.Controllers
                 return Ok();
             }
             else
-            {
-                return BadRequest();
+            {                                
+                return StatusCode(
+                    (int)HttpStatusCode.Conflict,
+                    "Check if already exists..");
             }            
         }
     }

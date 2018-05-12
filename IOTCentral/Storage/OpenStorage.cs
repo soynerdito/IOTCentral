@@ -3,19 +3,52 @@ using Microsoft.Extensions.Primitives;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace IOTCentral.Storage
 {
     public class OpenEntity
     {
+        private dynamic _Payload;
         public string Endpoint { get; set; }
-        public dynamic Payload { get; set; }
+        public dynamic Payload
+        {
+            get
+            {
+                return _Payload;
+            }
+            set
+            {
+                _Payload = value;
+                ItemHash = ComputeHash(_Payload);
+            }
+        }
+
+        public string ItemHash { get; private set; }
+
+        public static string ComputeHash(dynamic value)
+        {
+            using (SHA1Managed sha1 = new SHA1Managed())
+            {
+                byte[] hash = sha1.ComputeHash(
+                     Encoding.ASCII.GetBytes(Newtonsoft.Json.JsonConvert.SerializeObject(value))
+                );
+                //return hash.ToHashSet().ToString();
+                StringBuilder formatted = new StringBuilder(2 * hash.Length);
+                foreach (byte b in hash)
+                {
+                    formatted.AppendFormat("{0:X2}", b);
+                }
+                return formatted.ToString();
+            }
+        }
     }
     public class MagicFilter
     {
-        private readonly IEnumerable<KeyValuePair<String, StringValues>>  _Query;
+        private readonly IEnumerable<KeyValuePair<String, StringValues>> _Query;
 
-        public MagicFilter( IEnumerable<KeyValuePair<String, StringValues>> query)
+        public MagicFilter(IEnumerable<KeyValuePair<String, StringValues>> query)
         {
             this._Query = query;
         }
@@ -55,15 +88,15 @@ namespace IOTCentral.Storage
         /// <returns></returns>
         public List<object> Get(string endpoint, Func<dynamic, bool> predicate)
         {
-            if(predicate!=null)
+            if (predicate != null)
             {
-                return Storage.Where(x => x.Endpoint == endpoint).Select(x => x.Payload).Where(predicate).Select(x=>x).ToList();
+                return Storage.Where(x => x.Endpoint == endpoint).Select(x => x.Payload).Where(predicate).Select(x => x).ToList();
             }
             else
             {
                 return Storage.Where(x => x.Endpoint == endpoint).Select(x => x.Payload).ToList();
             }
-            
+
         }
         /// <summary>
         /// Check if object exists        
@@ -71,11 +104,13 @@ namespace IOTCentral.Storage
         /// <param name="endpoint"></param>
         /// <param name="payload"></param>
         /// <returns></returns>
-        public bool Exists(string endpoint, dynamic payload)
+        public bool Exists(OpenEntity item)
         {
             // TODO: This does not works! returns always false
             //Jsonify the object then get its hash            
-            return (Storage.Where(x => x.Endpoint == endpoint && x.GetHashCode() == new OpenEntity() { Endpoint = endpoint, Payload = payload }.GetHashCode() )?.Count() >0 );
+            return (Storage.Where(
+                x => x.Endpoint == item.Endpoint 
+                && x.ItemHash == item.ItemHash )?.Count() > 0);
         }
         /// <summary>
         /// Adds an object to the list
@@ -85,27 +120,34 @@ namespace IOTCentral.Storage
         /// <returns></returns>
         public bool Add(string endpoint, dynamic payload)
         {
-            if(!Exists(endpoint, payload))
-            {
-                Storage.Add(
-                    new OpenEntity()
+            var newItem = new OpenEntity()
                     {
                         Endpoint = endpoint,
                         Payload = payload
-                    });
+                    };
+            if (!Exists(newItem))
+            {
+                Storage.Add( newItem );
                 return true;
             }
             return false;
         }
 
-        public int Delete(string endpoint, Func<dynamic,bool> predicate)
+
+        public int Delete(string endpoint, Func<dynamic, bool> predicate)
         {
             int removeCount = 0;
-            foreach( var entry in Storage.Where(x => x.Endpoint == endpoint).Where(predicate))
-            {
-                Storage.Remove(entry);
-                removeCount++;
+            if( predicate !=null ){
+                removeCount = Storage.RemoveWhere( x=> x.Endpoint == endpoint && predicate(x.Payload)  );
+            }else{
+                removeCount = Storage.RemoveWhere( x=> x.Endpoint == endpoint );
             }
+            // foreach (var entry in Storage.Where(x => x.Endpoint == endpoint).Select(x=> x.Payload).Where(predicate))
+            // {
+            //     Storage.RemoveWhere( x=> x.Endpoint == endpoint && x.Payload == entry );
+            //     Storage.RemoveWhere( x=> x.Endpoint == endpoint && predicate(x.Payload)  );
+            //     removeCount++;
+            // }
             return removeCount;
         }
 
