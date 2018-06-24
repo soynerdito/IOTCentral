@@ -5,11 +5,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using IOTCentral.Models;
+using IOTCentral.Data;
 
 namespace IOTCentral.Controllers
 {
     public class HomeController : Controller
     {
+        private ApplicationDbContext DbContext;
+        public HomeController(ApplicationDbContext dbContext): base()
+        {
+            DbContext = dbContext;
+        }
+
         public IActionResult Index()
         {
             return View();
