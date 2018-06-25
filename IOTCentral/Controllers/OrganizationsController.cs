@@ -6,22 +6,30 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using IOTCentral.Data;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace IOTCentral.Controllers
 {
+    [Authorize]
     public class OrganizationsController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ApplicationDbContext _dbContext;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public OrganizationsController(ApplicationDbContext context)
+        public OrganizationsController(ApplicationDbContext context, UserManager<User> userManager , SignInManager<User> signInManager)
         {
-            _context = context;
+            _dbContext = context;
+            _userManager = userManager;
+            this._signInManager = signInManager;
         }
 
         // GET: Organizations
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Organization.ToListAsync());
+            return View(await _dbContext.Organization.ToListAsync());
         }
 
         // GET: Organizations/Details/5
@@ -32,7 +40,7 @@ namespace IOTCentral.Controllers
                 return NotFound();
             }
 
-            var organization = await _context.Organization
+            var organization = await _dbContext.Organization
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (organization == null)
             {
@@ -55,12 +63,28 @@ namespace IOTCentral.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Description")] Organization organization)
         {
-            if (ModelState.IsValid)
+            var org = this.User.FindFirst("Organization");
+            if( org !=null)
             {
-                _context.Add(organization);
-                await _context.SaveChangesAsync();
+                return BadRequest("User in organization already, cannot create another!");
+            }
+            if (ModelState.IsValid)
+            {                
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                var loggedUser = _dbContext.Users.Where(x => x.Id == userId).FirstOrDefault();
+                //Associate user to organization
+                organization.Users.Add(loggedUser);
+
+                _dbContext.Add(organization);
+                await _dbContext.SaveChangesAsync();
+
+                //var user = await _userManager.FindByIdAsync(yourId);
+                await _signInManager.RefreshSignInAsync(loggedUser);
+
                 return RedirectToAction(nameof(Index));
             }
+
+            
             return View(organization);
         }
 
@@ -72,7 +96,7 @@ namespace IOTCentral.Controllers
                 return NotFound();
             }
 
-            var organization = await _context.Organization.FindAsync(id);
+            var organization = await _dbContext.Organization.FindAsync(id);
             if (organization == null)
             {
                 return NotFound();
@@ -96,8 +120,8 @@ namespace IOTCentral.Controllers
             {
                 try
                 {
-                    _context.Update(organization);
-                    await _context.SaveChangesAsync();
+                    _dbContext.Update(organization);
+                    await _dbContext.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -123,7 +147,7 @@ namespace IOTCentral.Controllers
                 return NotFound();
             }
 
-            var organization = await _context.Organization
+            var organization = await _dbContext.Organization
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (organization == null)
             {
@@ -138,15 +162,15 @@ namespace IOTCentral.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var organization = await _context.Organization.FindAsync(id);
-            _context.Organization.Remove(organization);
-            await _context.SaveChangesAsync();
+            var organization = await _dbContext.Organization.FindAsync(id);
+            _dbContext.Organization.Remove(organization);
+            await _dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool OrganizationExists(int id)
         {
-            return _context.Organization.Any(e => e.Id == id);
+            return _dbContext.Organization.Any(e => e.Id == id);
         }
     }
 }

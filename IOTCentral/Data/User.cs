@@ -8,6 +8,6 @@ namespace IOTCentral.Data
 {
     public class User : IdentityUser
     {
-
+       
     }
 }

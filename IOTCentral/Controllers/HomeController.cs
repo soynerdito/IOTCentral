@@ -11,10 +11,10 @@ namespace IOTCentral.Controllers
 {
     public class HomeController : Controller
     {
-        private ApplicationDbContext DbContext;
+        private ApplicationDbContext _dbContext;
         public HomeController(ApplicationDbContext dbContext): base()
         {
-            DbContext = dbContext;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()

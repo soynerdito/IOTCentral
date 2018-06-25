@@ -25,6 +25,8 @@ namespace IOTCentral.Data
         }
         
         public DbSet<IOTCentral.Data.Organization> Organization { get; set; }
+
+
     }
 
 }

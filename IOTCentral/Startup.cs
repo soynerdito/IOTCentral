@@ -31,10 +31,16 @@ namespace IOTCentral
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseInMemoryDatabase() );
 
-            services.AddIdentity<User, IdentityRole>(options => options.Stores.MaxLengthForKeys = 128)
+            services.AddIdentity<User, IdentityRole>(
+                options => options.Stores.MaxLengthForKeys = 128
+                )
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultUI()
-                .AddDefaultTokenProviders();
+                .AddClaimsPrincipalFactory<AppClaimFactory>()
+                .AddDefaultTokenProviders( );
+
+
+
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -81,6 +87,17 @@ namespace IOTCentral
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+
+
+           
+
+
+
+
+
+
+
 
             app.UseAuthentication();
 
