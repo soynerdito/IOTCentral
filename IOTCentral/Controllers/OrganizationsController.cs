@@ -16,13 +16,13 @@ namespace IOTCentral.Controllers
     public class OrganizationsController : Controller
     {
         private readonly ApplicationDbContext _dbContext;
-        private readonly UserManager<User> _userManager;
+        //private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
-        public OrganizationsController(ApplicationDbContext context, UserManager<User> userManager , SignInManager<User> signInManager)
+        public OrganizationsController(ApplicationDbContext context /*, UserManager<User> userManager*/ , SignInManager<User> signInManager)
         {
             _dbContext = context;
-            _userManager = userManager;
+            //_userManager = userManager;
             this._signInManager = signInManager;
         }
 
