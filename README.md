@@ -6,3 +6,7 @@ No direction, no planning, just add some things until I do something else.
 
 Trying to add buildpack
 https://github.com/jincod/dotnetcore-buildpack
+
+
+View live @
+https://iotcentral.herokuapp.com/
