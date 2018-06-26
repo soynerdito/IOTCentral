@@ -1,9 +1,9 @@
-﻿using IOTCentral.Storage;
-using IOTCentral.Entities;
+﻿using IotCentral.Storage;
+using IotCentral.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
-namespace IOTCentral.Controllers
+namespace IotCentral.Controllers
 {
 
     public class StorageController<T> : Controller

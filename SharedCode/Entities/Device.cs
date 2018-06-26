@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IOTCentral.Entities
+namespace IotCentral.Entities
 {
     public class Device : IEntity
     {

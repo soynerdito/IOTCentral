@@ -1,10 +1,10 @@
-﻿using IOTCentral.Entities;
+﻿using IotCentral.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 
-namespace IOTCentral.Storage
+namespace IotCentral.Storage
 {
     public class GenericStorage<T> : IStorage<T> where T : IEntity
     {

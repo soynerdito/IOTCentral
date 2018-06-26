@@ -1,4 +1,4 @@
-﻿namespace IOTCentral.Data
+﻿namespace IotCentral.Data
 {
     /// <summary>
     /// Allow organizing devices

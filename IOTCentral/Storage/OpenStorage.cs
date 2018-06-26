@@ -6,7 +6,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace IOTCentral.Storage
+namespace IotCentral.Storage
 {
     public class OpenEntity
     {

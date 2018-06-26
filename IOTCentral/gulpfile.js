@@ -15,7 +15,30 @@ var regex = {
     js: /\.js$/
 };
 
-gulp.task("min", ["min:js", "min:css", "min:html"]);
+
+
+// Dependency Dirs
+var deps = {
+    "jquery": {
+        "dist/*": ""
+    },
+    "bootstrap": {
+        "dist/**/*": ""
+    },
+    "popper.js": {
+        "dist/**/*": ""
+    },
+    "jquery - validation - unobtrusive": {
+        "dist/**/*": ""
+    },
+    "jquery-validation": {
+        "dist/**/*": ""
+    }
+};
+
+gulp.task("min", ["scripts", "min:js", "min:css", "min:html"]);
+
+//gulp.task(, gulp.series('clean', 'scripts', 'minify'));
 
 gulp.task("min:js", function () {
     var tasks = getBundles(regex.js).map(function (bundle) {
@@ -74,3 +97,21 @@ function getBundles(regexPattern) {
         return regexPattern.test(bundle.outputFileName);
     });
 }
+
+gulp.task("scripts", function () {
+
+    var streams = [];
+
+    for (var prop in deps) {
+        console.log("Prepping Scripts for: " + prop);
+        for (var itemProp in deps[prop]) {
+            streams.push(gulp.src("node_modules/" + prop + "/" + itemProp)
+                .pipe(gulp.dest("wwwroot/lib/" + prop + "/" + deps[prop][itemProp])));
+        }
+    }
+
+    return merge(streams);
+
+});
+
+//gulp.task("default", gulp.series('clean', 'scripts', 'minify'));

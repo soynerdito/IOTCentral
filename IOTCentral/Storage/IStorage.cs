@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace IOTCentral.Storage
+namespace IotCentral.Storage
 {
     public interface IStorage<T>
     {

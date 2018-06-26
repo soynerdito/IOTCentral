@@ -1,4 +1,4 @@
-﻿using IOTCentral.Storage;
+﻿using IotCentral.Storage;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 
-namespace IOTCentral.Controllers
+namespace IotCentral.Controllers
 {
    
     [Produces("application/json")]

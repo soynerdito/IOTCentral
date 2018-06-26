@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IOTCentral.Data;
+using IotCentral.Data;
 
-namespace IOTCentral.Data
+namespace IotCentral.Data
 {
     /// <summary>
     /// Copied from Identitycontext, just wanted to specify my own IdentityClass
@@ -24,7 +24,7 @@ namespace IOTCentral.Data
             Database.EnsureCreated();
         }
         
-        public DbSet<IOTCentral.Data.Organization> Organization { get; set; }
+        public DbSet<IotCentral.Data.Organization> Organization { get; set; }
 
 
     }

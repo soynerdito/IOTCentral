@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using IOTCentral.Data;
+using IotCentral.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 
-namespace IOTCentral
+namespace IotCentral
 {
     public class AppClaimFactory : UserClaimsPrincipalFactory<User>
     {

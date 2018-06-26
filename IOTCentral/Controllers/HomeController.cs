@@ -4,10 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using IOTCentral.Models;
-using IOTCentral.Data;
+using IotCentral.Models;
+using IotCentral.Data;
 
-namespace IOTCentral.Controllers
+namespace IotCentral.Controllers
 {
     public class HomeController : Controller
     {

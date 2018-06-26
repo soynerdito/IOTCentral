@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "IOTCentral": {
+    "IotCentral": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

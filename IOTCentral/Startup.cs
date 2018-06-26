@@ -1,16 +1,16 @@
-﻿using IOTCentral.Storage;
-using IOTCentral.Entities;
+﻿using IotCentral.Storage;
+using IotCentral.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Identity;
-using IOTCentral.Data;
+using IotCentral.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
-namespace IOTCentral
+namespace IotCentral
 {
     public class Startup
     {

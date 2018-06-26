@@ -1,6 +1,6 @@
 using System;
 
-namespace IOTCentral.Models
+namespace IotCentral.Models
 {
     public class ErrorViewModel
     {

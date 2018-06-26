@@ -1,4 +1,4 @@
-﻿namespace IOTCentral.Entities
+﻿namespace IotCentral.Entities
 {
     public class DeviceType
     {

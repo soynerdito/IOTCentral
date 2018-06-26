@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 
-namespace IOTCentral
+namespace IotCentral
 {
     public class Program
     {

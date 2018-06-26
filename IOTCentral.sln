@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IOTCentral", "IOTCentral\IOTCentral.csproj", "{54C669FB-AB80-40D8-9C92-DAF02DA520F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IotCentral", "IOTCentral\IotCentral.csproj", "{54C669FB-AB80-40D8-9C92-DAF02DA520F3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileClient.Android", "MobileClient\MobileClient.Android\MobileClient.Android.csproj", "{21E0178A-3366-4755-A1CC-2F2B39F25569}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileClient.iOS", "MobileClient\MobileClient.iOS\MobileClient.iOS.csproj", "{313A2B12-3635-4448-A19B-8187DB36B28D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileClient", "MobileClient\MobileClient\MobileClient.csproj", "{5EF7C0DF-7F49-46BE-966B-F2016F42A087}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MobileClient", "MobileClient\MobileClient\MobileClient.csproj", "{5EF7C0DF-7F49-46BE-966B-F2016F42A087}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedCode", "SharedCode\SharedCode.csproj", "{D1C613F5-35DA-4E38-A4A0-BF11A670EA8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedCode", "SharedCode\SharedCode.csproj", "{D1C613F5-35DA-4E38-A4A0-BF11A670EA8F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,11 +1,11 @@
-﻿using IOTCentral.Data;
+﻿using IotCentral.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace IOTCentral.Services
+namespace IotCentral.Services
 {
     public class UserService
     {
