@@ -7,6 +7,10 @@ No direction, no planning, just add some things until I do something else.
 Trying to add buildpack
 https://github.com/jincod/dotnetcore-buildpack
 
+Using bootstrap 4
+
+Color theme from
+https://www.bootstrapcdn.com/bootswatch/
 
 View live @
 https://iotcentral.herokuapp.com/
