@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 62px;
     padding-bottom: 20px;
 }
 
@@ -9,7 +9,9 @@
     padding-left: 15px;
     padding-right: 15px;
 }
-
+.navbar {
+    height: 60px; /* Just an example height*/
+}
 /* Carousel */
 .carousel-caption p {
     font-size: 20px;
