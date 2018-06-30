@@ -81,7 +81,7 @@ namespace IotCentral
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-            
+
             //app.UseHttpsRedirection();
             //app.UseStaticFiles();
             /*app.UseStaticFiles(new StaticFileOptions
@@ -93,19 +93,9 @@ namespace IotCentral
                     ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=600");
                 }
             });*/
+            app.UseStaticFiles();
             app.UseCookiePolicy();
-
-
-
-           
-
-
-
-
-
-
-
-
+            
             app.UseAuthentication();
 
             app.UseMvc(routes =>
