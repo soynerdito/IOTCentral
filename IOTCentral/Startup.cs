@@ -81,11 +81,18 @@ namespace IotCentral
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
-            app.UseStaticFiles();
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+            
+            //app.UseHttpsRedirection();
+            //app.UseStaticFiles();
+            /*app.UseStaticFiles(new StaticFileOptions
+            {
+                OnPrepareResponse = ctx =>
+                {
+                    // Requires the following import:
+                    // using Microsoft.AspNetCore.Http;
+                    ctx.Context.Response.Headers.Append("Cache-Control", "public,max-age=600");
+                }
+            });*/
             app.UseCookiePolicy();
 
 
