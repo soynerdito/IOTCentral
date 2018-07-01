@@ -14,3 +14,6 @@ https://www.bootstrapcdn.com/bootswatch/
 
 View live @
 https://iotcentral.herokuapp.com/
+
+
+[Design notes while project is beeing developed](docs/DESIGN.md)
