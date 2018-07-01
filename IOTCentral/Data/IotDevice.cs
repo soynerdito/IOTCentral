@@ -9,7 +9,7 @@ namespace IotCentral.Data
     {
         
         public string Name { get; set; }
-
+        public EnumDeviceType DeviceType { get; set; }
         public DeviceGroup Group { get; set; }
 
 

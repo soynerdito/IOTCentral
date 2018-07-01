@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using IotCentral.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using IotCentral.Services;
 
 namespace IotCentral
 {
@@ -52,6 +53,9 @@ namespace IotCentral
             services.AddSingleton<IStorage<Device>>(new GenericStorage<Device>());
             services.AddSingleton<OpenStorage>();
             services.AddMvc();
+            
+            //Stuff for Messaging
+            services.AddSignalR();
 
             services.AddSwaggerGen(c =>
             {
@@ -97,6 +101,11 @@ namespace IotCentral
             app.UseCookiePolicy();
             
             app.UseAuthentication();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<IotMessageHub>("/iothub");
+            });
 
             app.UseMvc(routes =>
             {
