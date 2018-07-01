@@ -17,15 +17,14 @@ namespace IotCentral.Data
     {
         public DbSet<IotDevice> Devices { get; set; }
         public DbSet<DeviceGroup> DeviceGroups { get; set; }
-        
+        public DbSet<DeviceToken> DeviceTokens { get; set; }
+        public DbSet<Organization> Organizations { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
           : base(options)
         {
             Database.EnsureCreated();
         }
-        
-        public DbSet<IotCentral.Data.Organization> Organization { get; set; }
-
 
     }
 

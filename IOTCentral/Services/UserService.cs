@@ -20,5 +20,7 @@ namespace IotCentral.Services
         {
             return DbContext.Organization.Where(x => x.Users.Contains( user))?.FirstOrDefault();
         }
+
+        
     }
 }
