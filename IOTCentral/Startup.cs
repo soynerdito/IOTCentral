@@ -62,10 +62,10 @@ namespace IotCentral
                 c.SwaggerDoc("v1", new Info
                 {
                     Version = "v1",
-                    Title = "My API",
-                    Description = "My First ASP.NET Core Web API",
+                    Title = "Iot Central",
+                    Description = "Just trying to ease the pain of connecting stuff to other stuff and share it.",
                     TermsOfService = "None",
-                    Contact = new Contact() { Name = "Talking Dotnet", Email = "contact@talkingdotnet.com", Url = "www.talkingdotnet.com" }
+                    Contact = new Contact() { Name = "Iot Central Work in progress", Email = "soynerdito@gmail.com", Url = "https://iotcentral.herokuapp.com" }
                 });
             });
 

@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace IotCentral.Controllers
 {
     [Route("api/device")]
-    public class DeviceController : StorageController<Device>
+    public class Device2Controller : StorageController<Device>
     {
-        public DeviceController(IStorage<Device> storage) : base(storage)
+        public Device2Controller(IStorage<Device> storage) : base(storage)
         {
         }
     }

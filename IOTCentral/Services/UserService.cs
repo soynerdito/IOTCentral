@@ -18,7 +18,7 @@ namespace IotCentral.Services
 
         public Organization GetUserOrganization( User user)
         {
-            return DbContext.Organization.Where(x => x.Users.Contains( user))?.FirstOrDefault();
+            return DbContext.Organizations.Where(x => x.Users.Contains( user))?.FirstOrDefault();
         }
 
         

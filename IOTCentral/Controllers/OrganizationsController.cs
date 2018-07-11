@@ -29,7 +29,7 @@ namespace IotCentral.Controllers
         // GET: Organizations
         public async Task<IActionResult> Index()
         {
-            return View(await _dbContext.Organization.ToListAsync());
+            return View(await _dbContext.Organizations.ToListAsync());
         }
 
         // GET: Organizations/Details/5
@@ -40,7 +40,7 @@ namespace IotCentral.Controllers
                 return NotFound();
             }
 
-            var organization = await _dbContext.Organization
+            var organization = await _dbContext.Organizations
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (organization == null)
             {
@@ -96,7 +96,7 @@ namespace IotCentral.Controllers
                 return NotFound();
             }
 
-            var organization = await _dbContext.Organization.FindAsync(id);
+            var organization = await _dbContext.Organizations.FindAsync(id);
             if (organization == null)
             {
                 return NotFound();
@@ -147,7 +147,7 @@ namespace IotCentral.Controllers
                 return NotFound();
             }
 
-            var organization = await _dbContext.Organization
+            var organization = await _dbContext.Organizations
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (organization == null)
             {
@@ -162,15 +162,15 @@ namespace IotCentral.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var organization = await _dbContext.Organization.FindAsync(id);
-            _dbContext.Organization.Remove(organization);
+            var organization = await _dbContext.Organizations.FindAsync(id);
+            _dbContext.Organizations.Remove(organization);
             await _dbContext.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool OrganizationExists(int id)
         {
-            return _dbContext.Organization.Any(e => e.Id == id);
+            return _dbContext.Organizations.Any(e => e.Id == id);
         }
     }
 }

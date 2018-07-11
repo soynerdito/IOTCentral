@@ -19,7 +19,7 @@ namespace IotCentral
         protected override async Task<ClaimsIdentity> GenerateClaimsAsync(User user)
         {
             var claims = await base.GenerateClaimsAsync(user);
-            var userOrganization = _context.Organization.Where(x => x.Users.Contains(user))?.FirstOrDefault();
+            var userOrganization = _context.Organizations.Where(x => x.Users.Contains(user))?.FirstOrDefault();
             if(userOrganization!= null)
             {
                 //Add organization claim

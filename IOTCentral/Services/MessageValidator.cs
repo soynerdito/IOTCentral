@@ -9,9 +9,9 @@ namespace IotCentral.Services
     /// <summary>
     /// Handles the apporval of messages
     /// </summary>
-    public class MessageValirator : DataAccessService
+    public class MessageValidator : DataAccessService
     {
-        public MessageValirator(ApplicationDbContext db) : base(db)
+        public MessageValidator(ApplicationDbContext db) : base(db)
         {
 
         }
