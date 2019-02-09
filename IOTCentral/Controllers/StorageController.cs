@@ -5,19 +5,19 @@ using System;
 
 namespace IotCentral.Controllers
 {
-
-    public class StorageController<T> : Controller
+    
+    public abstract class StorageHandler<T> : Controller
         where T: IEntity
     {
         private IStorage<T> _Storage;
 
-        public StorageController(IStorage<T> storage)
+        protected StorageHandler(IStorage<T> storage)
         {
             _Storage = storage;
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] T payload)
+        public virtual IActionResult Post([FromBody] T payload)
         {
             if( !ModelState.IsValid)
             {
@@ -29,7 +29,7 @@ namespace IotCentral.Controllers
 
         [HttpGet]
         [Route("{id?}")]
-        public IActionResult Get([FromRoute]Guid? id= null)
+        public virtual IActionResult Get([FromRoute]Guid? id= null)
         {
 
             var record = _Storage.Get(id);
