@@ -127,8 +127,8 @@ namespace IotCentral
             //});
             app.UseSwaggerUi3WithApiExplorer(settings =>
             {
-                settings.SwaggerRoute = "/swagger/v1/swagger.json";
-                settings.SwaggerUiRoute = "/swagger";
+                //settings.SwaggerRoute = "/swagger/v1/swagger.json";
+                //settings.SwaggerUiRoute = "/swagger";
                 settings.PostProcess = document =>
                 {
                     document.Info.Version = "v1";
