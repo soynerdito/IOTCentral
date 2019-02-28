@@ -1,2 +1,1 @@
-web: cd $HOME/heroku_output && dotnet ./IOTCentral.dll
-
+web: cd /app/heroku_output && dotnet ./IOTCentral.dll
