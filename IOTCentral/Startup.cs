@@ -11,8 +11,6 @@ using Microsoft.EntityFrameworkCore;
 using IotCentral.Services;
 
 using NSwag.AspNetCore;
-using System.Reflection;
-using NJsonSchema;
 
 namespace IotCentral
 {
