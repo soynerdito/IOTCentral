@@ -5,12 +5,13 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netcoreapp2.0\IOTCentral.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netcoreapp2.2\IOTCentral.xml</DocumentationFile>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <LangVersion>latest</LangVersion>
+    <DocumentationFile>C:\Sources\HerokuStuff\IOTCentral\IOTCentral\IotCentral.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
