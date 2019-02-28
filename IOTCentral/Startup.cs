@@ -43,8 +43,29 @@ namespace IotCentral
                 .AddClaimsPrincipalFactory<AppClaimFactory>()
                 .AddDefaultTokenProviders( );
 
-
-
+            // Register the Swagger services
+            services.AddSwaggerDocument(config =>
+            {
+                config.PostProcess = document =>
+                {
+                    document.Info.Version = "v1";
+                    document.Info.Title = "Iot Central Api";
+                    document.Info.Description = "Basic project to play on the web";
+                    document.Info.TermsOfService = "None";
+                    document.Info.Contact = new NSwag.SwaggerContact
+                    {
+                        Name = "Soynerdito",
+                        Email = string.Empty,
+                        Url = "https://twitter.com/soynerdito"
+                    };
+                    document.Info.License = new NSwag.SwaggerLicense
+                    {
+                        Name = "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+                        Url = "https://creativecommons.org/licenses/by/4.0/"
+                    };
+                };
+            });
+           
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -59,20 +80,7 @@ namespace IotCentral
             
             //Stuff for Messaging
             services.AddSignalR();
-            services.AddSwagger();
-
-
-            //services.AddSwaggerGen(c =>
-            //{
-            //    c.SwaggerDoc("v1", new Info
-            //    {
-            //        Version = "v1",
-            //        Title = "Iot Central",
-            //        Description = "Just trying to ease the pain of connecting stuff to other stuff and share it.",
-            //        TermsOfService = "None",
-            //        Contact = new Contact() { Name = "Iot Central Work in progress", Email = "soynerdito@gmail.com", Url = "https://iotcentral.herokuapp.com" }
-            //    });
-            //});
+           
 
         }
 
@@ -113,63 +121,8 @@ namespace IotCentral
             });
 
             // Register the Swagger generator and the Swagger UI middlewares
-            //app.UseSwaggerUi3WithApiExplorer(settings =>
-            //{
-            //    settings.GeneratorSettings.DefaultPropertyNameHandling =
-            //        PropertyNameHandling.CamelCase;
-            //});
-
-           
-                                       //Other interesting middleware
-            //app.UseSwaggerUi3WithApiExplorer(settings => {
-            //    settings.SwaggerRoute = "/swagger/v1/swagger.json";
-            //    settings.SwaggerUiRoute = "/swagger";
-            //});
-            app.UseSwaggerUi3(settings =>
-            {
-                //settings.SwaggerRoute = "/swagger/v1/swagger.json";
-                //settings.SwaggerUiRoute = "/swagger";
-                settings.PostProcess = document =>
-                {
-                    document.Info.Version = "v1";
-                    document.Info.Title = "Iot Central Api";
-                    document.Info.Description = "Basic project to play on the web";
-                    document.Info.TermsOfService = "None";
-                    document.Info.Contact = new NSwag.SwaggerContact
-                    {
-                        Name = "Soynerdito",
-                        Email = string.Empty,
-                        Url = "https://twitter.com/soynerdito"
-                    };
-                    document.Info.License = new NSwag.SwaggerLicense
-                    {
-                        Name = "Creative Commons Attribution 4.0 International (CC BY 4.0)",
-                        Url = "https://creativecommons.org/licenses/by/4.0/"
-                    };
-                };
-            });
-            // Register the Swagger generator middleware
-            //app.UseSwaggerUi3WithApiExplorer(settings =>
-            //{
-            //    settings.PostProcess = document =>
-            //    {
-            //        document.Info.Version = "v1";
-            //        document.Info.Title = "Iot Central Api";
-            //        document.Info.Description = "Basic project to play on the web";
-            //        document.Info.TermsOfService = "None";
-            //        document.Info.Contact = new NSwag.SwaggerContact
-            //        {
-            //            Name = "Soynerdito",
-            //            Email = string.Empty,
-            //            Url = "https://twitter.com/soynerdito"
-            //        };
-            //        document.Info.License = new NSwag.SwaggerLicense
-            //        {
-            //            Name = "Creative Commons Attribution 4.0 International (CC BY 4.0)",
-            //            Url = "https://creativecommons.org/licenses/by/4.0/"
-            //        };
-            //    };
-            //});
+            app.UseSwagger();
+            app.UseSwaggerUi3();
 
 
             app.UseMvc(routes =>
@@ -179,20 +132,6 @@ namespace IotCentral
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-           
-            //app.UseSwaggerUi(typeof(Startup).Assembly, new SwaggerUiSettings
-            //{
-            //    SwaggerUiRoute = "swagger",
-
-            //});
-
-           
-
-            //app.UseSwagger();
-            //app.UseSwaggerUI(c =>
-            //{
-            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            //});
         }
     }
 }
