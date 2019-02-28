@@ -15,7 +15,11 @@
 
   <ItemGroup>
 
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.2" />
+   
+
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.2" />
+
+   
 
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
 
