@@ -27,6 +27,8 @@ A device is part of one organization
 Trying to add buildpack
 https://github.com/jincod/dotnetcore-buildpack
 
+Buildpacks for dotnet used to work now I do not know which works
+
 Using bootstrap 4
 
 Color theme from
